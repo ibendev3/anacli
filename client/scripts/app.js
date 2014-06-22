@@ -2,11 +2,14 @@
 
 
 /**
+ * @ngdoc Module
+ * @name ngAnaloc
+ * @description
  * Analoc Client main module creation. The application is declared and dependencies(3rd part libs) are injected
  * @Author Ben Diamant
  */
 
-var ngAnaloc = angular.module('ngAnaloc', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'easypiechart', 'ng-wizard', 'textAngular', 'ui.tree']);
+var ngAnaloc = angular.module('ngAnaloc', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'easypiechart', 'textAngular', 'ui.tree', 'analocCore', 'analocUsers']);
 
 /**
  * @name Main configuration block

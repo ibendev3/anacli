@@ -48,7 +48,7 @@
 <script src="bower_components/morris.js/morris.js"></script>
 <script src="scripts/vendors/responsive-tables.js"></script>
 <script src="scripts/vendors/jquery.sparkline.min.js"></script>
-<script src="scripts/vendors/angular-wizardmodule.js"></script>
+<script src="scripts/vendors/jquery.bootstrap.wizard.js"></script>
 <script src="bower_components/flot/jquery.flot.js"></script>
 <script src="bower_components/flot/jquery.flot.resize.js"></script>
 <script src="bower_components/flot/jquery.flot.pie.js"></script>
@@ -72,10 +72,14 @@
 
 
 <!-- build:js({.tmp,client}) scripts/app.js -->
+<!-- Core module -->
+<script src="scripts/Core/core.js"></script>
+<script src="scripts/Core/controllers/coreCtrl.js"></script>
+<!-- Users module -->
+<script src="scripts/Users/users.js"></script>
+<script src="scripts/Users/controllers/signupCtrl.js"></script>
 <script src="scripts/app.js"></script>
-<script src="scripts/Core/coreCtrl.js"></script>
-<script src="scripts/Users/signupCtrl.js"></script>
-<script src="scripts/Users/signupDirectives.js"></script>
+
 <!-- endbuild -->
 </body>
 </html>
