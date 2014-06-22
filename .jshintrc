@@ -19,7 +19,6 @@
     "trailing": true,
     "smarttabs": true,
     "globals": {
-        "angular": false,
-        "ngAnaloc": false
+        "angular": false
     }
 }

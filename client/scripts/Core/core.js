@@ -9,4 +9,5 @@
  * @Author Ben Diamant
  */
 
+/* exported coreModule */
 var coreModule = angular.module('analocCore', []);

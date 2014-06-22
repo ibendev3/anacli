@@ -8,7 +8,6 @@
  * Analoc Client main module creation. The application is declared and dependencies(3rd part libs) are injected
  * @Author Ben Diamant
  */
-
 var ngAnaloc = angular.module('ngAnaloc', ['ngRoute', 'ngAnimate', 'ui.bootstrap', 'easypiechart', 'textAngular', 'ui.tree', 'analocCore', 'analocUsers']);
 
 /**
@@ -21,7 +20,7 @@ ngAnaloc.config(['$routeProvider', function ($routeProvider) {
     return $routeProvider.when('/', {
         redirectTo: '/signup'
     }).when('/signup', {
-        templateUrl: 'views/users/signup.html'
+        templateUrl: 'scripts/Users/views/signup.html'
     }).otherwise({
         redirectTo: '/signup'
     });

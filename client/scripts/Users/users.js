@@ -8,4 +8,5 @@
  * @Author Ben Diamant
  */
 
-var analocUsers = angular.module('analocUsers', []);
+/* exported analocUsers */
+var analocUsers = angular.module('analocUsers', ['rcWizard', 'rcForm', 'rcDisabledBootstrap']);

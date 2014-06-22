@@ -114,7 +114,7 @@ module.exports = function (grunt) {
         // Make sure code styles are up to par and there are no obvious mistakes
         jshint: {
             options: {
-                ignores: '<%= yeoman.app %>/scripts/vendors/**/*.js',
+                ignores: ['<%= yeoman.app %>/scripts/vendors/**/*.js', '<%= yeoman.app %>/scripts/Users/vendors/*.js'],
                 jshintrc: '.jshintrc',
                 reporter: require('jshint-stylish')
             },
