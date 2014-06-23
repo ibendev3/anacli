@@ -1,133 +1,120 @@
 <div class="page-signup" ng-controller="signupCtrl">
-           <div class="signin-header">
+    <div class="signin-header">
         <div class="container text-center">
             <section class="logo">
-                <a href="#/">{{user}}</a>
+                <a href="#/">{{business | json}}</a>
             </section>
         </div>
     </div>
-<div class="container">
-            <div  rc-wizard="sampleWizard"
-                    rc-disabled="rc.firstForm.submitInProgress">
-                <ul class="nav rc-nav-wizard">
-                    <li class="active">
-                        <a class="active" href="#first" data-toggle="tab">
-                            <span class="badge">1</span>
-                            <span>Business Information</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#second" data-toggle="tab">
-                            <span class="badge">2</span>
-                            <span>Choose a plan</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#last" data-toggle="tab">
-                            <span class="badge">3</span>
-                            <span>Checkout</span>
-                        </a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <form class="tab-pane active" id="first" name="firstForm"
-                          rc-submit="saveState()" rc-step novalidate>
+    <div class="container">
+        <div rc-wizard="sampleWizard"
+             rc-disabled="rc.firstForm.submitInProgress">
+            <ul class="nav rc-nav-wizard">
+                <li class="active">
+                    <a class="active" href="#first" data-toggle="tab">
+                        <span class="badge">1</span>
+                        <span>Business Information</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#second" data-toggle="tab">
+                        <span class="badge">2</span>
+                        <span>Choose a plan</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#last" data-toggle="tab">
+                        <span class="badge">3</span>
+                        <span>Checkout</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <form class="tab-pane active" id="first" name="businessInfo"
+                      rc-submit="saveState()" rc-step novalidate>
 
                     <div class="form-group">
                         <label for="bName">Company name</label>
-                        <div class="input-group" ng-class="{'has-error': rc.firstForm.needsAttention(firstForm.bName)}">
+                        <div class="input-group" ng-class="{'has-error': rc.firstForm.needsAttention(businessInfo.bName)}">
                         <span class="input-group-addon">
-                                                            <span class="glyphicon glyphicon-briefcase"></span>
-
+                            <span class="glyphicon glyphicon-briefcase"></span>
                         </span>
-                        <input type="text" ng-model="business.name" name="bName" class="form-control" placeholder="Company name">
+                            <input type="text" ng-model="business.name" id="bName" class="form-control"
+                                   placeholder="Company name">
+                        </div>
                     </div>
+
+
+                </form>
+                <form class="tab-pane" id="second" name="secondForm"
+                      rc-submit rc-step>
+                    <h2>Enter second step data</h2>
+
+                    <div class="form-group">
+                        <label class="control-label">Street Address</label>
+                        <input name="streetAddress" class="form-control"
+                               type="text"
+                               ng-model="user.streetAddress"/>
                     </div>
-
-
-
-                        <div>
-                        <label class="control-label" for="bName">Business Name</label>
-                            <span class="input-group-addon" >
-                                    <span class="glyphicon glyphicon-briefcase"></span>
-                                </span>
-                            <div  >
-                            <input type="text" name="bName" class="form-control"
-                                    required
-                                    placeholder="Company name"
-                                    ng-model="business.name"/></div>
-                        </div>
-
-                    </form>
-                    <form class="tab-pane" id="second" name="secondForm"
-                          rc-submit rc-step>
-                        <h2>Enter second step data</h2>
-
-                        <div class="form-group">
-                            <label class="control-label">Street Address</label>
-                            <input name="streetAddress" class="form-control"
-                                   type="text"
-                                   ng-model="user.streetAddress"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">City</label>
-                            <input name="city" class="form-control" type="text"
-                                   ng-model="user.city"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">State</label>
-                            <input name="state" class="form-control" type="text"
-                                   ng-model="user.state"/>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">City</label>
-                            <input name="postalCode" class="form-control"
-                                   type="text"
-                                   ng-model="user.postalCode"/>
-                        </div>
-                    </form>
-                    <form class="tab-pane" id="last" name="lastForm"
-                          rc-submit="completeWizard()" rc-step>
-                        <h2>Finish last step</h2>
-
-                        <div class="form-group">
-                            <label class="control-label">First Name:</label>
-
-                            <p class="form-control-static">{{ user.firstName
-                                }}</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Last Name:</label>
-
-                            <p class="form-control-static">{{ user.lastName
-                                }}</p>
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Address:</label>
-
-                            <p class="form-control-static">
-                                {{ user.streetAddress }}
-                                <br/>
-                                {{ user.city }}, {{ user.state }} {{
-                                user.postalCode }}
-                            </p>
-                        </div>
-                    </form>
-                </div>
-                <div class="form-group">
-                    <div class="pull-right">
-                        <a class="btn btn-default"
-                           ng-click="rc.sampleWizard.backward()"
-                           ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
-                        <a class="btn btn-primary"
-                           data-loading-text="Please Wait..."
-                           ng-click="rc.sampleWizard.forward()"
-                           ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
-                        <a class="btn btn-primary"
-                           ng-click="rc.sampleWizard.forward()"
-                           ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
+                    <div class="form-group">
+                        <label class="control-label">City</label>
+                        <input name="city" class="form-control" type="text"
+                               ng-model="user.city"/>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label">State</label>
+                        <input name="state" class="form-control" type="text"
+                               ng-model="user.state"/>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">City</label>
+                        <input name="postalCode" class="form-control"
+                               type="text"
+                               ng-model="user.postalCode"/>
+                    </div>
+                </form>
+                <form class="tab-pane" id="last" name="lastForm"
+                      rc-submit="completeWizard()" rc-step>
+                    <h2>Finish last step</h2>
+
+                    <div class="form-group">
+                        <label class="control-label">First Name:</label>
+
+                        <p class="form-control-static">{{ user.firstName
+                            }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Last Name:</label>
+
+                        <p class="form-control-static">{{ user.lastName
+                            }}</p>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label">Address:</label>
+
+                        <p class="form-control-static">
+                            {{ user.streetAddress }}
+                            <br/>
+                            {{ user.city }}, {{ user.state }} {{
+                            user.postalCode }}
+                        </p>
+                    </div>
+                </form>
+            </div>
+            <div class="form-group">
+                <div class="pull-right">
+                    <a class="btn btn-default"
+                       ng-click="rc.sampleWizard.backward()"
+                       ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
+                    <a class="btn btn-primary"
+                       data-loading-text="Please Wait..."
+                       ng-click="rc.sampleWizard.forward()"
+                       ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
+                    <a class="btn btn-primary"
+                       ng-click="rc.sampleWizard.forward()"
+                       ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
                 </div>
             </div>
-</div>
+        </div>
+    </div>
 </div>
