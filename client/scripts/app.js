@@ -27,3 +27,4 @@ ngAnaloc.config(['$routeProvider', function ($routeProvider) {
 
 }
 ]);
+

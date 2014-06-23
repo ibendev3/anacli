@@ -1,0 +1,17 @@
+/*
+    Users modules stylesheet - define style for authentication, registration and login pages
+*/
+
+#signupPage {
+  /* hides the spin-button for firefox */
+  input[type=number] {
+    -moz-appearance:textfield;
+  }
+  /* hides the spin-button for chrome*/
+  input[type=number]::-webkit-outer-spin-button,
+  input[type=number]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+}
