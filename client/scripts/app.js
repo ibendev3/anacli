@@ -1,6 +1,5 @@
 'use strict';
 
-
 /**
  * @ngdoc Module
  * @name ngAnaloc

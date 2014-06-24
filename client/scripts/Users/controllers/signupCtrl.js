@@ -6,7 +6,16 @@
  */
 analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', function($scope, $q, $timeout) {
 
-    //
+    // For Development puposes
+//    $scope.business = {
+//        name: "Analoc Co",
+//        address: {
+//            city: "Tel Aviv",
+//            street: "Atidim 7",
+//            zip: 45000
+//        }
+//    };
+
     $scope.business = {};
 
     $scope.saveState = function() {

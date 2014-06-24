@@ -1,10 +1,17 @@
 'use strict';
 
+/**
+ * Analoc Client Grunt configuration files for task runner
+ * @Author: Ben Diamant
+ * @Tasks:
+ * serve - compile client files, check for errors with jsHint and launch a dev server on port 8080
+ * test - Copying static files to temp folder and perform karma test over them
+ * build - Minifying CSS and JS files, creating app deployment-ready structure under dist folder
+ *
+ **/
 
 module.exports = function (grunt) {
-
-
-    var developmentPort = 9000;
+    var developmentPort = 8001;
     var watchFiles = {
         clientViews: ['client/scripts/**/views/*.html'],
         clientJS: ['client/scripts/app.js', 'client/scripts/**/*.js'],
@@ -23,17 +30,8 @@ module.exports = function (grunt) {
     // Time how long tasks take. Can help when optimizing build times
     require('time-grunt')(grunt);
 
-    // Configurable paths for the application
-    var appConfig = {
-        app: 'client',
-        dist: 'dist'
-    };
-
     // Define the configuration for all the tasks
     grunt.initConfig({
-
-        // Project settings
-        yeoman: appConfig,
 
         // Watches files for changes and runs tasks based on the changed files
         watch: {
@@ -60,8 +58,9 @@ module.exports = function (grunt) {
             },
             htmls: {
                 files: watchFiles.clientViews,
+                tasks: ['newer:jshint:all'],
                 option: {
-                    livereload: true
+                    livereload: '<%= connect.options.livereload %>'
                 }
 
             },
