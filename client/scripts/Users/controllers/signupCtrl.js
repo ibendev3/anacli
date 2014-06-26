@@ -4,7 +4,7 @@
  * Signup controller - Focus on signup wizard scope handling
  *  @author Ben Diamant
  */
-analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', function($scope, $q, $timeout) {
+analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', 'analocUsersConsts', function($scope, $q, $timeout, analocUsersConsts) {
 
     // For Development puposes
 //    $scope.business = {
@@ -15,7 +15,8 @@ analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', function($scop
 //            zip: 45000
 //        }
 //    };
-
+    $scope.countries = analocUsersConsts.countries;
+    $scope.langs = analocUsersConsts.languages;
     $scope.business = {};
 
     $scope.saveState = function() {

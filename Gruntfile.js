@@ -11,7 +11,7 @@
  **/
 
 module.exports = function (grunt) {
-    var developmentPort = 8001;
+    var developmentPort = 8002;
     var watchFiles = {
         clientViews: ['client/scripts/**/views/*.html'],
         clientJS: ['client/scripts/app.js', 'client/scripts/**/*.js'],
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
             },
             styles: {
                 files: watchFiles.clientLESS,
-                tasks: ['newer:copy:styles', 'autoprefixer'],
+                tasks: ['newer:less'],
                 option: {
                     livereload: '<%= connect.options.livereload %>'
                 }
@@ -108,6 +108,16 @@ module.exports = function (grunt) {
             }
         },
 
+        less: {
+
+            all: {
+                files: {
+                    ".tmp/styles/main.css": watchFiles.clientLESS
+                }
+            }
+
+        },
+
         // Make sure code styles are up to par and there are no obvious mistakes
         jshint: {
             options: {
@@ -126,7 +136,7 @@ module.exports = function (grunt) {
             }
         },
 
-        // Empties folders to start fresh
+// Empties folders to start fresh
         clean: {
             dist: {
                 files: [
@@ -142,24 +152,7 @@ module.exports = function (grunt) {
             server: ['.tmp']
         },
 
-        // Add vendor prefixed styles
-        autoprefixer: {
-            options: {
-                browsers: ['last 2 version']
-            },
-            dist: {
-                files: [
-                    {
-                        expand: true,
-                        cwd: '.tmp/styles/',
-                        src: '**/*.css',
-                        dest: '.tmp/styles/'
-                    }
-                ]
-            }
-        },
-
-        // Renames files for browser caching purposes
+// Renames files for browser caching purposes
         filerev: {
             dist: {
                 src: [
@@ -169,9 +162,9 @@ module.exports = function (grunt) {
             }
         },
 
-        // Reads HTML for usemin blocks to enable smart builds that automatically
-        // concat, minify and revision files. Creates configurations in memory so
-        // additional tasks can operate on them
+// Reads HTML for usemin blocks to enable smart builds that automatically
+// concat, minify and revision files. Creates configurations in memory so
+// additional tasks can operate on them
         useminPrepare: {
             html: 'client/index.html'
         },
@@ -180,32 +173,28 @@ module.exports = function (grunt) {
             html: [appLocations.dist + "/index.html"]
         },
 
-        // Copies remaining files to places other tasks can use
+// Copies remaining files to places other tasks can use
         copy: {
             dist: {
-                files: [{
-                    expand: true,
-                    dot: true,
-                    cwd: appLocations.app + '/',
-                    dest: appLocations.dist + '/',
-                    src: [
-                        'favicon.ico',
-                        '.htaccess',
-                        '**/*.html',
-                        'fonts/*',
-                        'i18n/*.js'
-                    ]
-                }]
-            },
-            styles: {
-                expand: true,
-                cwd: appLocations.app + '/styles',
-                dest: '.tmp/styles/',
-                src: '**/*.less'
+                files: [
+                    {
+                        expand: true,
+                        dot: true,
+                        cwd: appLocations.app + '/',
+                        dest: appLocations.dist + '/',
+                        src: [
+                            'favicon.ico',
+                            '.htaccess',
+                            '**/*.html',
+                            'fonts/*',
+                            'i18n/*.js'
+                        ]
+                    }
+                ]
             }
         },
 
-        //Minifying images files
+//Minifying images files
         imagemin: {
             dist: {
                 files: [
@@ -219,7 +208,7 @@ module.exports = function (grunt) {
             }
         },
 
-        //Task to minify html assets
+//Task to minify html assets
         htmlmin: {
             dist: {
                 options: {
@@ -240,24 +229,25 @@ module.exports = function (grunt) {
             }
         },
 
-        // Test settings
+// Test settings
         karma: {
             unit: {
                 configFile: 'test/karma.conf.js',
                 singleRun: true
             }
         }
-    });
+    })
+    ;
 
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
-            return grunt.task.run(['build', 'connect:dist:keepalive']);
+            return grunt.task.run([ 'connect:dist:keepalive']);
         }
 
         grunt.task.run([
             'clean:server',
-            'copy:styles',
+            'less',
             'connect:livereload',
             'watch'
         ]);
@@ -277,13 +267,13 @@ module.exports = function (grunt) {
         'clean:dist',
         'useminPrepare',
         'concat',
-        'autoprefixer',
+        'less',
         'cssmin',
         'uglify',
         'filerev',
         'copy:dist',
         'usemin',
-        'imagemin',
+       'imagemin',
         'htmlmin'
     ]);
 
@@ -292,4 +282,5 @@ module.exports = function (grunt) {
         'test',
         'build'
     ]);
-};
+}
+;

@@ -1,4 +1,4 @@
-<div class="page-signup" ng-controller="signupCtrl">
+<div class="page-signup" id="signupPage" ng-controller="signupCtrl">
 <div class="signin-header">
     <div class="container text-center">
         <h3>{{business}}</h3>
@@ -29,29 +29,28 @@
             </li>
         </ul>
         <div class="tab-content">
-            <form class="tab-pane active" id="first" name="businessInfo" rc-submit="saveState()" rc-step novalidate>
+            <form class="tab-pane active form-horizontal" id="first" name="businessInfo" rc-submit="saveState()" rc-step novalidate>
 
                 <div class="row">
                     <div class="col-lg-6">
 
                         <h2>Business Information</h2>
                         <div class="form-group">
-                            <label for="bName">Company name</label>
+                            <label class="col-sm-3 control-label" for="bName">Company name</label>
 
-                            <div class="input-group"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bName)}">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-briefcase"></span>
-                        </span>
+                            <div class="input-group col-sm-9"  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bName)}">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-briefcase"></span>
+                                </span>
                                 <input type="text" required ng-model="business.name" id="bName" name="bName"
                                        class="form-control"
                                        placeholder="Company name">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="bStreet">Street</label>
+                            <label  class="col-sm-3 control-label" for="bStreet">Street</label>
 
-                            <div class="input-group"
+                            <div class="input-group col-sm-9"
                                  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bStreet)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
@@ -62,9 +61,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="bCity">City</label>
+                            <label  class="col-sm-3 control-label" for="bCity">City</label>
 
-                            <div class="input-group"
+                            <div class="input-group col-sm-9"
                                  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bCity)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
@@ -75,9 +74,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="bZip">Zip Code</label>
+                            <label  class="col-sm-3 control-label" for="bZip">Zip Code</label>
 
-                            <div class="input-group"
+                            <div class="input-group col-sm-9"
                                  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bZip)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
@@ -87,6 +86,39 @@
                                        placeholder="Zip Code">
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label" for="bCountry">Country</label>
+
+                            <div class="input-group col-sm-9"
+                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bCountry)}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </span>
+
+                                <input type="text"
+                                       ng-model="business.address.country"
+                                       typeahead="country for country in countries | filter:$viewValue | limitTo:8"
+                                       class="form-control"
+                                       name="bCountry"
+                                       id="bCountry"
+                                       placeholder="Country">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label  class="col-sm-3 control-label" for="bLang">Interface Language</label>
+
+                            <div class="input-group col-sm-9"
+                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bLang)}">
+
+                            <span class="ui-select">
+                                 <select ng-model="format" ng-options="l for l in langs"
+                                         name="bLang"
+                                         id="bLang"
+                                         ></select>
+                            </span>
+
+                            </div>
+                        </div>
 
 
                     </div>
@@ -94,9 +126,9 @@
                         <h2>User Details</h2>
 
                         <div class="form-group">
-                            <label for="bEmail">Email Adress</label>
+                            <label  class="col-sm-3 control-label" for="bEmail">Email Adress</label>
 
-                            <div class="input-group"
+                            <div class="input-group col-sm-9"
                                  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bEmail)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-envelope"></span>
@@ -107,9 +139,9 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="bPassword">Password</label>
+                            <label  class="col-sm-3 control-label" for="bPassword">Password</label>
 
-                            <div class="input-group"
+                            <div class="input-group col-sm-9"
                                  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bPassword)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
@@ -138,19 +170,19 @@
                 <h2>Finish last step</h2>
 
                 <div class="form-group">
-                    <label class="control-label">First Name:</label>
+                    <label  class="col-sm-3 control-label" class="control-label">First Name:</label>
 
                     <p class="form-control-static">{{ user.firstName
                         }}</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Last Name:</label>
+                    <label  class="col-sm-3 control-label" class="control-label">Last Name:</label>
 
                     <p class="form-control-static">{{ user.lastName
                         }}</p>
                 </div>
                 <div class="form-group">
-                    <label class="control-label">Address:</label>
+                    <label  class="col-sm-3 control-label" class="control-label">Address:</label>
 
                     <p class="form-control-static">
                         {{ user.streetAddress }}
