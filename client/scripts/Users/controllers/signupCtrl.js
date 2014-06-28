@@ -9,13 +9,14 @@ analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', 'md5', 'analoc
     $scope.countries = analocUsersConsts.countries;
     $scope.langs = analocUsersConsts.languages;
     $scope.hoursaday = analocUsersConsts.hoursaday;
+    $scope.reports_s = analocUsersConsts.reportsSchedules;
     // For Development puposes
     $scope.analocSignup = {
         business: {
             name: "Analoc Co",
             address: {
-//                country: 'Israel',
-                city: md5.createHash(angular.lowercase("Admin@admin.com")),
+                country: 'Israel',
+                city: 'Tel Aviv',
                 street: "Atidim 7",
                 zip: 45000
             },
@@ -23,9 +24,9 @@ analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', 'md5', 'analoc
                 from: '0',
                 to: '0'
             }
-
         },
         lang: 'EN',
+        report_s: 'NEVER',
         user: {
             email: 'ben@analoc.com',
             password: '123456'

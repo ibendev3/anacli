@@ -117,21 +117,23 @@
             <div class="row form-group">
 
                 <div class="col-sm-6">
-                        <div class="input-group ui-select" style="width:100%"
-                             ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bFrom)}">
-                            <label for="bFrom" style="width:20%;">From: </label>
-                            <select ng-model="analocSignup.business.opening.from" style="width:80%; text-align: right;" ng-options="k as v for (k, v) in hoursaday"
-                                    name="bFrom"
-                                    id="bFrom"
-                                    > </select>
+                    <div class="input-group ui-select" style="width:100%"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bFrom)}">
+                        <label for="bFrom" style="width:20%;">From: </label>
+                        <select ng-model="analocSignup.business.opening.from" style="width:80%; text-align: right;"
+                                ng-options="k as v for (k, v) in hoursaday"
+                                name="bFrom"
+                                id="bFrom"
+                                > </select>
 
-                        </div>
+                    </div>
                 </div>
                 <div class="col-sm-6">
                     <div class="input-group ui-select" style="width:100%"
                          ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bTo)}">
                         <label for="bFrom" style="width:20%;">To: </label>
-                        <select ng-model="analocSignup.business.opening.to" style="width:80%; text-align: right;" ng-options="k as v for (k, v) in hoursaday"
+                        <select ng-model="analocSignup.business.opening.to" style="width:80%; text-align: right;"
+                                ng-options="k as v for (k, v) in hoursaday"
                                 name="bTo"
                                 id="bTo"
                                 > </select>
@@ -142,22 +144,92 @@
 
             <div class="row form-group">
                 <div class="col-sm-6">
-                    <div class="input-group ui-select" style="width:100%"
+                    <div class="input-group"  style="width:100%"
                          ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bLang)}">
                         <label for="bLang">Interface Language</label>
-                        <select ng-model="analocSignup.lang" style="width:100%" ng-options="k as v for (k, v) in langs"
-                                name="bLang"
-                                id="bLang"
-                                > </select>
+                        <div class=" ui-select">
+                            <select ng-model="analocSignup.lang" style="width:100%" ng-options="k as v for (k, v) in langs"
+                                    name="bLang"
+                                    id="bLang"> </select>
+                        </div>
+
 
                     </div>
                 </div>
+                <div class="col-sm-6">
+                    <div class="input-group"  style="width:100%"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bReport)}">
+                        <label for="bLang">Business Reports</label>
+                        <div class=" ui-select">
+                            <select ng-model="analocSignup.report_s" style="width:100%" ng-options="k as v for (k, v) in reports_s"
+                                    name="bReport"
+                                    id="bReport"> </select>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div><div class="row form-group">
+                <div class="col-sm-6">
+                    <div class="input-group"  style="width:100%"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bLang)}">
+                       <div>
+                           <label>Upload Company Logo: </label>
+
+                       </div>
+                        <div>
+                            <input type="file" class="btn-info" title="Choose File" data-ui-file-upload>
+                        </div>
+
+                    </div>
+                </div>
+
             </div>
 
 
         </div>
         <div class="col-lg-6">
+            <h2>User Details</h2>
 
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="bEmail">Email Adress</label>
+
+                <div class="input-group col-sm-9"
+                     ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bEmail)}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-envelope"></span>
+                        </span>
+                    <input type="email" required ng-model="analocSignup.user.email" id="bEmail" name="bEmail"
+                           class="form-control"
+                           placeholder="hint: user@example.com">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="bPassword">Password</label>
+
+                <div class="input-group col-sm-9"
+                     ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bPassword)}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </span>
+                    <input type="password" required valid-password ng-model="analocSignup.user.password" id="bPassword"
+                           name="bPassword" data-ng-minlength="6" class="form-control"
+                           placeholder="min 6 digits">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="bPassword">Repeat Password</label>
+
+                <div class="input-group col-sm-9"
+                     ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bPasswordR)}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </span>
+                    <input type="password" valid-password-repeat required ng-model="analocSignup.user.passwordR" id="bPasswordR"
+                           name="bPasswordR" data-ng-minlength="6" class="form-control"
+                           placeholder="min 6 digits">
+                </div>
+            </div>
             <div class="row text-center">
                 <h4>{{analocSignup | json}}</h4>
             </div>
@@ -168,36 +240,9 @@
     </div>
 </form>
 <form class="tab-pane" id="second" name="secondForm"
-      rc-submit="saveState()" rc-step>
+      rc-submit="completeWizard()" rc-step>
     <h2>Finish last step</h2>
-    <h2>User Details</h2>
 
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="bEmail">Email Adress</label>
-
-        <div class="input-group col-sm-9"
-             ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bEmail)}">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-envelope"></span>
-                        </span>
-            <input type="email" required ng-model="analocSignup.user.email" id="bEmail" name="bEmail"
-                   class="form-control"
-                   placeholder="hint: user@example.com">
-        </div>
-    </div>
-    <div class="form-group">
-        <label class="col-sm-3 control-label" for="bPassword">Password</label>
-
-        <div class="input-group col-sm-9"
-             ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bPassword)}">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-home"></span>
-                        </span>
-            <input type="password" required ng-model="analocSignup.user.password" id="bPassword"
-                   name="bPassword" data-ng-minlength="6" class="form-control"
-                   placeholder="min 6 digits">
-        </div>
-    </div>
 
 </form>
 <form class="tab-pane" id="third" name="thirdForm"
