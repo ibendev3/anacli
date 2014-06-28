@@ -15,7 +15,7 @@ module.exports = function (grunt) {
     var watchFiles = {
         clientViews: ['client/scripts/**/views/*.html'],
         clientJS: ['client/scripts/app.js', 'client/scripts/**/*.js'],
-        clientLESS: ['client/styles/main.less'],
+        clientLESS: ['client/styles/**/*.less'],
         clientImages: ['client/images/**/*.{png,jpg,jpeg,gif,webp,svg'],
         karmaTests: ['test/**/*.js', 'test/**/*.js']
     };
@@ -37,7 +37,7 @@ module.exports = function (grunt) {
         watch: {
             js: {
                 files: watchFiles.clientJS,
-                tasks: ['newer:jshint:all'],
+                tasks: ['jshint:all'],
                 options: {
                     livereload: '<%= connect.options.livereload %>'
                 }
@@ -51,7 +51,7 @@ module.exports = function (grunt) {
             },
             styles: {
                 files: watchFiles.clientLESS,
-                tasks: ['newer:less'],
+                tasks: ['clean:server', 'newer:less'],
                 option: {
                     livereload: '<%= connect.options.livereload %>'
                 }
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
 
             all: {
                 files: {
-                    ".tmp/styles/main.css": watchFiles.clientLESS
+                    ".tmp/styles/main.css": 'client/styles/main.less'
                 }
             }
 
@@ -171,6 +171,15 @@ module.exports = function (grunt) {
 
         usemin: {
             html: [appLocations.dist + "/index.html"]
+        },
+        cssmin: {
+            dist: {
+                files: {
+                    'dist/styles/main.css': [
+                        '.tmp/styles/**/*.css'
+                    ]
+                }
+            }
         },
 
 // Copies remaining files to places other tasks can use

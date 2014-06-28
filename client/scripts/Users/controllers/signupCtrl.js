@@ -4,32 +4,51 @@
  * Signup controller - Focus on signup wizard scope handling
  *  @author Ben Diamant
  */
-analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', 'analocUsersConsts', function($scope, $q, $timeout, analocUsersConsts) {
+analocUsers.controller('signupCtrl', ['$scope', '$q', '$timeout', 'md5', 'analocUsersConsts', function ($scope, $q, $timeout, md5, analocUsersConsts) {
 
-    // For Development puposes
-//    $scope.business = {
-//        name: "Analoc Co",
-//        address: {
-//            city: "Tel Aviv",
-//            street: "Atidim 7",
-//            zip: 45000
-//        }
-//    };
     $scope.countries = analocUsersConsts.countries;
     $scope.langs = analocUsersConsts.languages;
-    $scope.business = {};
+    $scope.hoursaday = analocUsersConsts.hoursaday;
+    // For Development puposes
+    $scope.analocSignup = {
+        business: {
+            name: "Analoc Co",
+            address: {
+//                country: 'Israel',
+                city: md5.createHash(angular.lowercase("Admin@admin.com")),
+                street: "Atidim 7",
+                zip: 45000
+            },
+            opening: {
+                from: '0',
+                to: '0'
+            }
 
-    $scope.saveState = function() {
+        },
+        lang: 'EN',
+        user: {
+            email: 'ben@analoc.com',
+            password: '123456'
+        }
+    };
+
+//    $scope.business = {
+//        lang: 'EN'
+//    };
+
+    $scope.saveState = function () {
         var deferred = $q.defer();
 
-        $timeout(function() {
+        $timeout(function () {
             deferred.resolve();
-        }, 5000);
+        }, 1000);
 
         return deferred.promise;
     };
 
-    $scope.completeWizard = function() {
+    $scope.completeWizard = function () {
         alert('Completed!');
     }
 }]);
+
+

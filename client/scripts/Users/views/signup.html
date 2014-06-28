@@ -1,212 +1,299 @@
 <div class="page-signup" id="signupPage" ng-controller="signupCtrl">
 <div class="signin-header">
-    <div class="container text-center">
-        <h3>{{business}}</h3>
-    </div>
+    <h1 class="title">Thank you for choosing Analoc</h1>
 </div>
 
 <div class="container">
-    <div rc-wizard="sampleWizard"
-         rc-disabled="rc.firstForm.submitInProgress">
-        <ul class="nav rc-nav-wizard">
-            <li class="active">
-                <a class="active" href="#first" data-toggle="tab">
-                    <span class="badge">1</span>
-                    <span>Business Information</span>
-                </a>
-            </li>
-            <li>
-                <a href="#second" data-toggle="tab">
-                    <span class="badge">2</span>
-                    <span>Choose a plan</span>
-                </a>
-            </li>
-            <li>
-                <a href="#last" data-toggle="tab">
-                    <span class="badge">3</span>
-                    <span>Checkout</span>
-                </a>
-            </li>
-        </ul>
-        <div class="tab-content">
-            <form class="tab-pane active form-horizontal" id="first" name="businessInfo" rc-submit="saveState()" rc-step novalidate>
+<div rc-wizard="analocSignupWizard" rc-disabled="rc.analocSignupForm.submitInProgress">
+<ul class="nav rc-nav-wizard">
+    <li class="active">
+        <a class="active" href="#first" data-toggle="tab">
+            <span class="badge">1</span>
+            <span>Business Information</span>
+        </a>
+    </li>
+    <li>
+        <a href="#second" data-toggle="tab">
+            <span class="badge">2</span>
+            <span>Choose a plan</span>
+        </a>
+    </li>
+    <li>
+        <a href="#third" data-toggle="tab">
+            <span class="badge">3</span>
+            <span>Choose a plan</span>
+        </a>
+    </li>
+    <li>
+        <a href="#last" data-toggle="tab">
+            <span class="badge">3</span>
+            <span>Checkout</span>
+        </a>
+    </li>
+</ul>
+<div class="tab-content">
+<form class="tab-pane active form-horizontal" id="first" name="businessInfo" rc-submit="saveState()" rc-step
+      novalidate>
 
-                <div class="row">
-                    <div class="col-lg-6">
+    <div class="row">
+        <div class="col-lg-6">
 
-                        <h2>Business Information</h2>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label" for="bName">Company name</label>
+            <h2>Business Information</h2>
 
-                            <div class="input-group col-sm-9"  ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bName)}">
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <div class="input-group"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bName)}">
                                 <span class="input-group-addon">
                                     <span class="glyphicon glyphicon-briefcase"></span>
                                 </span>
-                                <input type="text" required ng-model="business.name" id="bName" name="bName"
-                                       class="form-control"
-                                       placeholder="Company name">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bStreet">Street</label>
-
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bStreet)}">
+                        <input type="text" required ng-model="analocSignup.business.name" id="bName" name="bName"
+                               class="form-control"
+                               placeholder="Company name">
+                    </div>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <div class="input-group"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bStreet)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
                         </span>
-                                <input type="text" required ng-model="business.address.street" id="bStreet"
-                                       name="bStreet" class="form-control"
-                                       placeholder="Street">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bCity">City</label>
-
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bCity)}">
+                        <input type="text" required ng-model="analocSignup.business.address.street" id="bStreet"
+                               name="bStreet" class="form-control"
+                               placeholder="Street">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bCity)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
                         </span>
-                                <input type="text" required ng-model="business.address.city" id="bCity" name="bCity"
-                                       class="form-control"
-                                       placeholder="City">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bZip">Zip Code</label>
+                        <input type="text" required ng-model="analocSignup.business.address.city" id="bCity"
+                               name="bCity"
+                               class="form-control"
+                               placeholder="City">
+                    </div>
+                </div>
+            </div>
 
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bZip)}">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-home"></span>
-                        </span>
-                                <input type="number" required ng-model="business.address.zip" id="bZip" name="bZip"
-                                       class="form-control"
-                                       placeholder="Zip Code">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bCountry">Country</label>
 
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bCountry)}">
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <div class="input-group"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bCountry)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
                         </span>
 
-                                <input type="text"
-                                       ng-model="business.address.country"
-                                       typeahead="country for country in countries | filter:$viewValue | limitTo:8"
-                                       class="form-control"
-                                       name="bCountry"
-                                       id="bCountry"
-                                       placeholder="Country">
-                            </div>
+                        <input type="text"
+                               ng-model="analocSignup.business.address.country"
+                               typeahead="country for country in countries | filter:$viewValue | limitTo:8"
+                               class="form-control"
+                               name="bCountry"
+                               id="bCountry"
+                               placeholder="Country">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bZip)}">
+                        <span class="input-group-addon">
+                            <span class="glyphicon glyphicon-home"></span>
+                        </span>
+                        <input type="number" required ng-model="analocSignup.business.address.zip" id="bZip" name="bZip"
+                               class="form-control"
+                               placeholder="Zip Code">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <label>Opening Hours</label>
+                </div>
+            </div>
+            <div class="row form-group">
+
+                <div class="col-sm-6">
+                        <div class="input-group ui-select" style="width:100%"
+                             ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bFrom)}">
+                            <label for="bFrom" style="width:20%;">From: </label>
+                            <select ng-model="analocSignup.business.opening.from" style="width:80%; text-align: right;" ng-options="k as v for (k, v) in hoursaday"
+                                    name="bFrom"
+                                    id="bFrom"
+                                    > </select>
+
                         </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bLang">Interface Language</label>
-
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bLang)}">
-
-                            <span class="ui-select">
-                                 <select ng-model="format" ng-options="l for l in langs"
-                                         name="bLang"
-                                         id="bLang"
-                                         ></select>
-                            </span>
-
-                            </div>
-                        </div>
-
+                </div>
+                <div class="col-sm-6">
+                    <div class="input-group ui-select" style="width:100%"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bTo)}">
+                        <label for="bFrom" style="width:20%;">To: </label>
+                        <select ng-model="analocSignup.business.opening.to" style="width:80%; text-align: right;" ng-options="k as v for (k, v) in hoursaday"
+                                name="bTo"
+                                id="bTo"
+                                > </select>
 
                     </div>
-                    <div class="col-lg-6">
-                        <h2>User Details</h2>
+                </div>
+            </div>
 
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bEmail">Email Adress</label>
+            <div class="row form-group">
+                <div class="col-sm-6">
+                    <div class="input-group ui-select" style="width:100%"
+                         ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bLang)}">
+                        <label for="bLang">Interface Language</label>
+                        <select ng-model="analocSignup.lang" style="width:100%" ng-options="k as v for (k, v) in langs"
+                                name="bLang"
+                                id="bLang"
+                                > </select>
 
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bEmail)}">
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col-lg-6">
+
+            <div class="row text-center">
+                <h4>{{analocSignup | json}}</h4>
+            </div>
+
+        </div>
+
+
+    </div>
+</form>
+<form class="tab-pane" id="second" name="secondForm"
+      rc-submit="saveState()" rc-step>
+    <h2>Finish last step</h2>
+    <h2>User Details</h2>
+
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="bEmail">Email Adress</label>
+
+        <div class="input-group col-sm-9"
+             ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bEmail)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-envelope"></span>
                         </span>
-                                <input type="email" required ng-model="business.user.email" id="bEmail" name="bEmail"
-                                       class="form-control"
-                                       placeholder="hint: user@example.com">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label  class="col-sm-3 control-label" for="bPassword">Password</label>
+            <input type="email" required ng-model="analocSignup.user.email" id="bEmail" name="bEmail"
+                   class="form-control"
+                   placeholder="hint: user@example.com">
+        </div>
+    </div>
+    <div class="form-group">
+        <label class="col-sm-3 control-label" for="bPassword">Password</label>
 
-                            <div class="input-group col-sm-9"
-                                 ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bPassword)}">
+        <div class="input-group col-sm-9"
+             ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bPassword)}">
                         <span class="input-group-addon">
                             <span class="glyphicon glyphicon-home"></span>
                         </span>
-                                <input type="password" required ng-model="business.user.password" id="bPassword"
-                                       name="bPassword" data-ng-minlength="6" class="form-control"
-                                       placeholder="min 6 digits">
-                            </div>
-                        </div>
-
-
-
-                    </div>
-
-
-                </div>
-            </form>
-
-            <form class="tab-pane" id="second" name="secondForm"
-                  rc-submit rc-step>
-                <h1>Enter second step data</h1>
-
-            </form>
-            <form class="tab-pane" id="last" name="lastForm"
-                  rc-submit="completeWizard()" rc-step>
-                <h2>Finish last step</h2>
-
-                <div class="form-group">
-                    <label  class="col-sm-3 control-label" class="control-label">First Name:</label>
-
-                    <p class="form-control-static">{{ user.firstName
-                        }}</p>
-                </div>
-                <div class="form-group">
-                    <label  class="col-sm-3 control-label" class="control-label">Last Name:</label>
-
-                    <p class="form-control-static">{{ user.lastName
-                        }}</p>
-                </div>
-                <div class="form-group">
-                    <label  class="col-sm-3 control-label" class="control-label">Address:</label>
-
-                    <p class="form-control-static">
-                        {{ user.streetAddress }}
-                        <br/>
-                        {{ user.city }}, {{ user.state }} {{
-                        user.postalCode }}
-                    </p>
-                </div>
-            </form>
-        </div>
-        <div class="form-group">
-            <div class="pull-right">
-                <a class="btn btn-default"
-                   ng-click="rc.sampleWizard.backward()"
-                   ng-show="rc.sampleWizard.currentIndex > rc.sampleWizard.firstIndex">Back</a>
-                <a class="btn btn-primary"
-                   data-loading-text="Please Wait..."
-                   ng-click="rc.sampleWizard.forward()"
-                   ng-show="rc.sampleWizard.currentIndex < rc.sampleWizard.navigationLength">Continue</a>
-                <a class="btn btn-primary"
-                   ng-click="rc.sampleWizard.forward()"
-                   ng-show="rc.sampleWizard.currentIndex == rc.sampleWizard.navigationLength">Complete</a>
-            </div>
+            <input type="password" required ng-model="analocSignup.user.password" id="bPassword"
+                   name="bPassword" data-ng-minlength="6" class="form-control"
+                   placeholder="min 6 digits">
         </div>
     </div>
+
+</form>
+<form class="tab-pane" id="third" name="thirdForm"
+      rc-submit rc-step rc-submit="saveState()">
+    <input type="hidden">
+    <!-- PRICING -->
+    <div class="container">
+
+        <section id="pricing" class="sect-2">
+            <div class="row">
+                <div class="col-sm-3 pricepart">
+                    <div class="price-head">
+                        <h4 class="price-title">Basic</h4>
+
+                        <div class="price-label">$29.99 <span>per month</span></div>
+                    </div>
+                    <ul class="price-content">
+                        <li><span class="colored">A/B</span> test window display effectiveness</li>
+                        <li><span class="colored">Measure</span> foot traffic inside and outside the store</li>
+                        <li><span class="colored">Gauge</span> costumer loyalty by tracking repeat visitors</li>
+                        <li><span class="colored">Evaluate</span> marketing campaigns success by analyzing store visits
+                            data
+                        </li>
+                        <li><span class="colored">Compare</span> dwell time, window conversion rate</li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-4 pricepart">
+                    <div class="price-head">
+                        <h4 class="price-title">Premium</h4>
+
+                        <div class="price-label">$79.99 <span>per month</span></div>
+                    </div>
+                    <ul class="price-content">
+                        <li class="center">Use Analoc's dedicated sensors with more flexbility</li>
+                        <li class="center">All benefits of boutiques</li>
+                        <li><span class="colored">Understand</span> in-store costumer flow</li>
+                        <li><span class="colored">Recognize</span> in-store movement patterns and optimize store layout
+                        </li>
+                        <li><span class="colored">Evaluate</span> marketing campaigns and sales across departments</li>
+                        <li><span class="colored">Optimize</span> staffiing accroding to real-time in-store activity
+                        </li>
+                        <li><span class="colored">Compare</span> dwell time, loyalty, and other metrics across
+                            department
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-3 pricepart" ng-click="testMe(); rc.analocSignupWizard.forward()">
+                    <div class="price-head">
+                        <h4 class="price-title">Enterprise</h4>
+
+                        <div class="price-label">Custom</div>
+                    </div>
+                    <ul class="price-content">
+                        <li><span class="colored">Monitor</span> foot traffic and other key performance metrics</li>
+                        <li><span class="colored">Optimize</span> rent prices by measuring foot traffic and costumer
+                            flow patterns
+                        </li>
+                        <li><span class="colored">Find</span> the best locations for ad placements price them
+                            accordingly
+                        </li>
+                        <li><span class="colored">Measure</span> success of events and marketing campaigns</li>
+                        <li><span class="colored">Evaluate</span> the effect of new tenants on mall traffic and costumer
+                            loyalty
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+
+        </section>
+    </div>
+
+</form>
+<form class="tab-pane" id="last" name="lastForm"
+      rc-submit="completeWizard()" rc-step>
+    <h2>Finish last step</h2>
+
+
+</form>
+</div>
+<div class="form-group">
+    <div class="pull-right">
+        <a class="btn btn-default"
+           ng-click="rc.analocSignupWizard.backward()"
+           ng-show="rc.analocSignupWizard.currentIndex > rc.analocSignupWizard.firstIndex">Back</a>
+        <a class="btn btn-primary"
+           data-loading-text="Please Wait..."
+           ng-click="rc.analocSignupWizard.forward()"
+           ng-show="rc.analocSignupWizard.currentIndex < rc.analocSignupWizard.navigationLength">Continue</a>
+        <a class="btn btn-primary"
+           ng-click="rc.analocSignupWizard.forward()"
+           ng-show="rc.analocSignupWizard.currentIndex == rc.analocSignupWizard.navigationLength">Complete</a>
+    </div>
+</div>
+</div>
 </div>
 </div>

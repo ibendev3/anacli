@@ -33,7 +33,8 @@
     "angularjs-google-maps": "https://github.com/allenhwkim/angularjs-google-maps.git#~0.3.8",
     "jqvmap": "*",
     "ng-tags-input": "~2.0.1",
-    "font-awesome": "~4.1.0"
+    "font-awesome": "~4.1.0",
+    "angular-md5": "~0.1.7"
   },
   "devDependencies": {
     "twbs-bootstrap-sass": "~3.1.1",
