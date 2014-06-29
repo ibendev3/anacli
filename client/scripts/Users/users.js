@@ -9,7 +9,7 @@
  */
 
 /* exported analocUsers */
-var analocUsers = angular.module('analocUsers', ['rcWizard', 'rcForm', 'rcDisabledBootstrap', 'angular-md5']);
+var analocUsers = angular.module('analocUsers', ['rcWizard', 'rcForm', 'rcDisabledBootstrap', 'angular-md5', 'angularFileUpload']);
 
 /**
  * @ngdoc Module constants

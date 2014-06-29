@@ -3,6 +3,7 @@
     <h1 class="title">Thank you for choosing Analoc</h1>
 </div>
 
+
 <div class="container">
 <div rc-wizard="analocSignupWizard" rc-disabled="rc.analocSignupForm.submitInProgress">
 <ul class="nav rc-nav-wizard">
@@ -170,15 +171,18 @@
                     </div>
                 </div>
             </div><div class="row form-group">
-                <div class="col-sm-6">
+                <div class="col-sm-12">
                     <div class="input-group"  style="width:100%"
                          ng-class="{'has-error': rc.businessInfo.needsAttention(businessInfo.bLang)}">
                        <div>
                            <label>Upload Company Logo: </label>
 
                        </div>
-                        <div>
-                            <input type="file" class="btn-info" title="Choose File" data-ui-file-upload>
+                        <div style="position: relative">
+                            <input type="file" ng-file-select="onFileSelect($files)" class="btn-info" title="Choose File" data-ui-file-upload>
+                            <img class="logo_image" ng-src="{{logo_image}}"/>
+                            <img class="loader_image" ng-src="{{loaderimg}}"/>
+
                         </div>
 
                     </div>

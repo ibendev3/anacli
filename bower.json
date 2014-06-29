@@ -34,7 +34,8 @@
     "jqvmap": "*",
     "ng-tags-input": "~2.0.1",
     "font-awesome": "~4.1.0",
-    "angular-md5": "~0.1.7"
+    "angular-md5": "~0.1.7",
+    "ng-file-upload": "~1.4.0"
   },
   "devDependencies": {
     "twbs-bootstrap-sass": "~3.1.1",
